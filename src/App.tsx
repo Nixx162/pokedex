@@ -68,21 +68,33 @@ export default function App() {
           </div>
         )}
       </div>
-      <div className="flex justify-center items-center gap-4 mt-6 h-[10vh]">
-        <button
-          onClick={() => setPage((p) => Math.max(1, p - 1))}
-          disabled={page === 1}
-          className="px-4 py-2 bg-blue-500 text-white rounded-md disabled:bg-gray-300"
-        >
-          Previous
-        </button>
-        <span className="text-gray-700">Page {page}</span>
-        <button
-          onClick={() => setPage((p) => p + 1)}
-          className="px-4 py-2 bg-blue-500 text-white rounded-md disabled:bg-gray-300"
-        >
-          Next
-        </button>
+      <div className="flex flex-col justify-center items-center gap-4 mt-6 h-[10vh]">
+        <div className="flex justify-center items-center mt-6 gap-4">
+          <label className="text-gray-700">Items per page:</label>
+          <select>
+            <option>6</option>
+            <option>12</option>
+            <option>18</option>
+            <option>24</option>
+            <option>30</option>
+          </select>
+        </div>
+        <div className="flex justify-center items-center gap-10">
+          <button
+            onClick={() => setPage((p) => Math.max(1, p - 1))}
+            disabled={page === 1}
+            className="px-4 py-2 bg-blue-500 text-white rounded-md disabled:bg-gray-300"
+          >
+            Previous
+          </button>
+          <span className="text-gray-700">Page {page}</span>
+          <button
+            onClick={() => setPage((p) => p + 1)}
+            className="px-4 py-2 bg-blue-500 text-white rounded-md disabled:bg-gray-300"
+          >
+            Next
+          </button>
+        </div>
       </div>
     </div>
   );
