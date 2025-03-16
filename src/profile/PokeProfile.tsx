@@ -60,40 +60,40 @@ export default function PokeProfile({pokeurl}: PokeProfileProps) {
         fetchData();
     }, [pokeurl])
 
-    if (pokemon.isLoading) {
-      return (
-        <div className="flex items-center justify-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-4 border-gray-200 border-t-blue-500" />
-        </div>
-      );
-    }
-
-    if (pokemon.error) {
-      return <div className="text-red-500">Error: {pokemon.error.message}</div>;
-    }
-    
     return (
-      <div className="flex flex-col items-center p-4">
-        <h1 className="text-xl font-bold capitalize mb-2">
-          {pokemon.data?.name}
-        </h1>
-        <img
-          src={pokemon.data?.sprites.front_default}
-          alt={pokemon.data?.name}
-          className="w-32 h-32 object-contain"
-        />
-        <div className="flex gap-2 mt-2">
-          {pokemon.data?.types.map((type) => (
-            <span
-              key={type.slot}
-              className={
-                "px-3 py-1 rounded-full text-sm capitalize text-white bg-green-500"
-              }
-            >
-              {type.type.name}
-            </span>
-          ))}
-        </div>
+      <div className="flex flex-col items-center justify-center p-4 min-h-64">
+        {pokemon.isLoading && (
+          <div className="animate-spin rounded-full h-8 w-8 border-4 border-gray-200 border-t-blue-500" />
+        )}
+
+        {pokemon.error && (
+          <div className="text-red-500">Error: {pokemon.error.message}</div>
+        )}
+
+        {!pokemon.isLoading && !pokemon.error && pokemon.data && (
+          <>
+            <h1 className="text-xl font-bold capitalize mb-2">
+              {pokemon.data.name}
+            </h1>
+            <img
+              src={pokemon.data.sprites.front_default}
+              alt={pokemon.data.name}
+              className="w-32 h-32 object-contain"
+            />
+            <div className="flex gap-2 mt-2">
+              {pokemon.data.types.map((type) => (
+                <span
+                  key={type.slot}
+                  className={
+                    "px-3 py-1 rounded-full text-sm capitalize text-white bg-green-500"
+                  }
+                >
+                  {type.type.name}
+                </span>
+              ))}
+            </div>
+          </>
+        )}
       </div>
     );
 }
