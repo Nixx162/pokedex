@@ -61,7 +61,7 @@ export default function PokeProfile({pokeurl}: PokeProfileProps) {
     }, [pokeurl])
 
     return (
-      <div className="flex flex-col items-center justify-center p-4 min-h-64">
+      <div className="flex flex-col items-center justify-center p-4 min-h-48 min-w-sm">
         {pokemon.isLoading && (
           <div className="animate-spin rounded-full h-8 w-8 border-4 border-gray-200 border-t-blue-500" />
         )}
